@@ -1,49 +1,4 @@
-glassesOn = false
-currentGlasses = nil
-myGlasses = nil
-sgTexture = nil
-glassesSet = false
-noGlasses = false
-
-hatsTexture = nil
-hatsOn = false
-currentHats = nil
-myHats = nil
-hatsSet = false
-noHats = false
-
-masksTexture = nil
-masksOn = false
-currentMasks = nil
-myMasks = nil
-masksSet = false
-nomasks = false
-
-RegisterNetEvent('sung')
-AddEventHandler('sung', function()
---[[
-Sets variables for if sunglasses are on and which sunglasses they are
-]]--
-local ad = "clothingspecs"
- local ads = "mp_masks@standard_car@ds@"
-local player = PlayerPedId()
-loadAnimDict( ad )
-loadAnimDict( ads )
-local player = GetPlayerPed(-1)
-local currentGlasses = GetPedPropIndex(player, 1)
-if currentGlasses == -1 and glassesSet == false then
-  noGlasses = true
-  glassesSet = false
-elseif currentGlasses ~= -1 and glassesSet == false then
-  myGlasses = GetPedPropIndex(player, 1)
-  sgTexture = GetPedPropTextureIndex(player, 1)
-  noGlasses = false
-  glassesSet = true
-  glassesOn = true
-elseif currentGlasses == -1 and glassesSet == true then
-  glassesOn = false
-elseif glassesSet == true and currentGlasses ~= -1 and myGlasses ~= currentGlasses then
-  myGlasses = GetPedPropIndex(player, 1)
+ myGlasses = GetPedPropIndex(player, 1)
   sgTexture = GetPedPropTextureIndex(player, 1)
   glassesSet = true
   noGlasses = false
@@ -69,7 +24,7 @@ ClearPedSecondaryTask(PlayerPedId())
   ClearPedProp(player, 1)
 end
 else
-  TriggerEvent("pNotify:SendNotification",{text = "Du har ikke briller på",type = "success",timeout = (1400),layout = "bottomCenter",queue = "global",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"}})
+  TriggerEvent("pNotify:SendNotification",{text = "Du har ikke briller på",type = "error",timeout = (1400),layout = "bottomCenter",queue = "global",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"}})
 end
 
 end, false)
@@ -126,7 +81,7 @@ ClearPedSecondaryTask(PlayerPedId())
     ClearPedProp(player, 0)
 end
 else
-  TriggerEvent("pNotify:SendNotification",{text = "Du har ikke en hat",type = "success",timeout = (1400),layout = "bottomCenter",queue = "global",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"}})
+  TriggerEvent("pNotify:SendNotification",{text = "Du har ikke en hat",type = "error",timeout = (1400),layout = "bottomCenter",queue = "global",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"}})
 end
 
 end, false)
@@ -183,7 +138,7 @@ ClearPedSecondaryTask(PlayerPedId())
 SetPedComponentVariation(player, 1, 0 ,0 ,2)
 end
 else
-  TriggerEvent("pNotify:SendNotification",{text = "Du har ikke en maske",type = "success",timeout = (1400),layout = "bottomCenter",queue = "global",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"}})
+  TriggerEvent("pNotify:SendNotification",{text = "Du har ikke en maske",type = "error",timeout = (1400),layout = "bottomCenter",queue = "global",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"}})
 end
 
 end, false)
